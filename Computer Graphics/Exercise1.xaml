@@ -1,0 +1,122 @@
+﻿<Page x:Class="Computer_Graphics.Exercise1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Computer_Graphics"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="Exercise1">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="0.2*"/>
+        </Grid.ColumnDefinitions>
+        <Canvas Grid.Column="0" Background="White" Name="canvasExerciseOne_c" MouseLeftButtonDown="startPainting_mlbd" MouseLeftButtonUp="stopPainting_mlbu"/>
+        <StackPanel Grid.Column="1">
+            <GroupBox Header="Tools">
+                <StackPanel>
+                    <RadioButton Name="clickTool_rb" GroupName="Tool" Content="Point" IsChecked="True"/>
+                    <RadioButton Name="lineTool_rb"  GroupName="Tool" Content="Line" />
+                    <RadioButton Name="circleTool_rb"  GroupName="Tool" Content="Circle" />
+                    <RadioButton Name="rectangleTool_rb" GroupName="Tool" Content="Rectangle" />
+                    <Label Content="Color: "/>
+                    <xctk:ColorPicker Margin="5" Name="ClrPcker_Background" SelectedColorChanged="ClrPcker_Background_SelectedColorChanged"></xctk:ColorPicker>
+                    <Label Content="Fill: "/>
+                    <CheckBox Name="fill_cb">Fill</CheckBox>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Aspect">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.6*"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Margin="5" Content="Name: "/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Name="shapeName_tb" VerticalAlignment="Center"/>
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"  Content="X1: " Margin="5"/>
+                        <TextBox Grid.Column="1" Margin="5" Name="shapeX1_tb" VerticalAlignment="Center"/>
+                        <Label Grid.Column="2"  Content="Y1: " Margin="5"/>
+                        <TextBox Grid.Column="3" Margin="5" Name="shapeY1_tb" VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"  Content="X2: " Margin="5"/>
+                        <TextBox Grid.Column="1" Margin="5" Name="shapeX2_tb" VerticalAlignment="Center"/>
+                        <Label Grid.Column="2"  Content="Y2: " Margin="5"/>
+                        <TextBox Grid.Column="3" Margin="5" Name="shapeY2_tb" VerticalAlignment="Center"/>
+                    </Grid>
+                    <Label Grid.Row="3" Grid.Column="0"  Content="Height: " Margin="5"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="5" Name="shapeHeight_tb" VerticalAlignment="Center"/>
+                    <Label Grid.Row="4" Grid.Column="0"  Content="Width: " Margin="5"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="5" Name="shapeWidth_tb" VerticalAlignment="Center"/>
+                    <CheckBox Grid.Row="5" Grid.ColumnSpan="2" Name="newColor_cb">Change color</CheckBox>
+                    <Button Content="Save" Click="ShapeSave_Click" Grid.Row="6" Grid.ColumnSpan="2" Padding="5" Margin="5"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Info">
+                <StackPanel>
+                    <Label Name="info_l"/>
+                    <Label Name="color_l"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Objects">
+                <StackPanel>
+                    <Label Content="Lines: "/>
+                    <ListView Name="linesList_lb">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <TextBlock Text="{Binding Name}" />
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Label Content="Circles: "/>
+                    <ListView Name="ellipsesList_lb">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <TextBlock Text="{Binding Name}" />
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Label Content="Rectangles: "/>
+                    <ListView Name="rectanglesList_lb">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <TextBlock Text="{Binding Name}" />
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</Page>

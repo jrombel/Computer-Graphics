@@ -1,0 +1,94 @@
+﻿<Page x:Class="Computer_Graphics.Exercise7"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Computer_Graphics"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="Exercise7">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+        <Canvas Name="vectorCanvas_c" Grid.Column="0" Background="White" MouseLeftButtonDown="vectorCanvas_c_MouseLeftButtonDown" MouseRightButtonDown="vectorCanvas_c_MouseRightButtonDown" MouseMove="vectorCanvas_c_MouseMove" ClipToBounds="True"/>
+        <StackPanel Grid.Column="1">
+
+            <GroupBox Header="Tools">
+                <StackPanel>
+                    <RadioButton Content="Create" Name="createTool_rb" IsChecked="True" GroupName="vektorTool" Style="{StaticResource {x:Type ToggleButton}}" Margin="3" Padding="3" Click="vektorToolChange_Click"/>
+                    <RadioButton Content="Move" Name="moveTool_rb" GroupName="vektorTool" Style="{StaticResource {x:Type ToggleButton}}" Margin="3" Padding="3" Click="vektorToolChange_Click"/>
+                    <RadioButton Content="Rotate" Name="rotateTool_rb" GroupName="vektorTool" Style="{StaticResource {x:Type ToggleButton}}" Margin="3" Padding="3" Click="vektorToolChange_Click"/>
+                    <RadioButton Content="Resize" Name="resizeTool_rb" GroupName="vektorTool" Style="{StaticResource {x:Type ToggleButton}}" Margin="3" Padding="3" Click="vektorToolChange_Click"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Create" Visibility="{Binding IsChecked, ElementName=createTool_rb, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel>
+                    <Label>New point</Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>X:</Label>
+                        <TextBox Name="newPointX" Width="35" VerticalAlignment="Center"/>
+                        <Label>Y:</Label>
+                        <TextBox Name="newPointY" Width="35" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <Button Content="Add point" Click="addPoint_Click" Padding="3" Margin="3"/>
+                    <Button Content="Remove all points" Click="removePoints_Click" Padding="3" Margin="3"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Landmark">
+                <StackPanel>
+                    <RadioButton Name="pointLandmark_rb" GroupName="landmark_gn" Content="Point" IsChecked="True" Click="pointLandmark_rb_Click"/>
+                    <RadioButton Name="enterLandmark_rb" GroupName="landmark_gn" Content="Use: "/>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Name="landmarkX_tb" Width="35" VerticalAlignment="Center" LostFocus="landmark_tb_LostFocus"/>
+                        <Label>;</Label>
+                        <TextBox Name="landmarkY_tb" Width="35" VerticalAlignment="Center" LostFocus="landmark_tb_LostFocus"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Move" Visibility="{Binding IsChecked, ElementName=moveTool_rb, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>X:</Label>
+                        <TextBox Name="moveVectorX" Width="35" VerticalAlignment="Center"/>
+                        <Label>Y:</Label>
+                        <TextBox Name="moveVectorY" Width="35" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <Button Content="Move" Click="move_Click" Padding="3" Margin="3"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Rotate" Visibility="{Binding IsChecked, ElementName=rotateTool_rb, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>Angle</Label>
+                        <TextBox Name="angle_tb" Width="30" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Button Content="Rotate" Click="rotate_Click" Margin="3" Padding="3"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Resize" Visibility="{Binding IsChecked, ElementName=resizeTool_rb, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label>Angle</Label>
+                        <TextBox Name="ratioK_tb" Width="30" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Button Content="Resize" Click="resize_Click" Margin="3" Padding="3"/>
+                </StackPanel>
+            </GroupBox>
+
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,40 @@
+﻿<Window x:Class="Computer_Graphics.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Computer_Graphics"
+        mc:Ignorable="d"
+        Title="Computer Graphics" Height="550" Width="725" WindowState="Maximized">
+    <Window.Resources>
+        <Style x:Key="exerciseStyle" BasedOn="{StaticResource {x:Type ToggleButton}}" TargetType="RadioButton">
+            <Setter Property="Margin" Value="0,3,0,3" />
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="FontFamily" Value="OCR A Std" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="GroupName" Value="exerciseNumber_gn"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#464646">
+            <Label Content="Exercise number:" Margin="3" Padding="3" VerticalAlignment="Bottom" Foreground="White" FontFamily="OCR A Std" FontWeight="Bold"/>
+            <RadioButton Name="exercise1_rb" Content="1" Style="{StaticResource exerciseStyle}" Click="exerciseNumber_Click" IsChecked="True"/>
+            <RadioButton Name="exercise2_rb" Content="2" Style="{StaticResource exerciseStyle}" Click="exerciseNumber_Click"/>
+            <RadioButton Name="exercise3_rb" Content="3" Style="{StaticResource exerciseStyle}" Click="exerciseNumber_Click"/>
+            <RadioButton Name="exercise4_rb" Content="4" Style="{StaticResource exerciseStyle}" Click="exerciseNumber_Click"/>
+            <RadioButton Name="exercise5_rb" Content="5" Style="{StaticResource exerciseStyle}" Click="exerciseNumber_Click"/>
+            <RadioButton Name="exercise6_rb" Content="6" Style="{StaticResource exerciseStyle}" Click="exerciseNumber_Click"/>
+            <RadioButton Name="exercise7_rb" Content="7" Style="{StaticResource exerciseStyle}" Click="exerciseNumber_Click"/>
+            <RadioButton Name="exercise8_rb" Content="8" Style="{StaticResource exerciseStyle}" Click="exerciseNumber_Click"/>
+            <RadioButton Name="exercise9_rb" Content="9" Style="{StaticResource exerciseStyle}" Click="exerciseNumber_Click"/>
+        </StackPanel>
+        <Frame Grid.Row="1" Name="main_f" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>

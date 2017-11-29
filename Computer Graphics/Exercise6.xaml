@@ -1,0 +1,77 @@
+﻿<Page x:Class="Computer_Graphics.Exercise6"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Computer_Graphics"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="Exercise6">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Canvas Name="bezierPoints_c" Grid.Column="0" Background="White" MouseLeftButtonDown="bezierPoints_c_MouseLeftButtonDown" MouseMove="bezierPoints_c_MouseMove" PreviewMouseLeftButtonUp="bezierPoints_c_MouseLeftButtonUp"/>
+        <Canvas Name="bezier_c" Grid.Column="0"/>
+
+        <StackPanel Grid.Column="1">
+
+            <GroupBox Header="Tools" HorizontalAlignment="Center">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton Content="Add" Name="addBezierTool_rb" GroupName="bezierTool" Style="{StaticResource {x:Type ToggleButton}}" IsChecked="True" Margin="1" Padding="3"/>
+                        <RadioButton Content="Move" Name="moveBezierTool_rb" GroupName="bezierTool" Style="{StaticResource {x:Type ToggleButton}}" Margin="1" Padding="3"/>
+                        <RadioButton Content="Remove" Name="removeBezierTool_rb" GroupName="bezierTool" Style="{StaticResource {x:Type ToggleButton}}" Margin="1" Padding="3"/>
+                    </StackPanel>
+                    <Button Content="Remove all points" Click="removeAllPoints_Click" Margin="1" Padding="3"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Points amount">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Click="reduceAmount_Click">-</Button>
+                    <TextBox Name="pointsAmout_tb">0</TextBox>
+                    <Button Click="increaseAmount_Click">+</Button>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Change parameter t">
+                <StackPanel>
+                    <TextBox Name="changeT_tb" Text="{Binding ElementName=changeT_s, Path=Value}" VerticalAlignment="Center" Width="50" TextAlignment="Center"/>
+                    <Slider Minimum="0.001" Maximum="0.05" Value="{Binding ElementName=changeT_tb, Path=Text}" Name="changeT_s" Width="auto" TickFrequency="0.0001" IsSnapToTickEnabled="True" Margin="5" TickPlacement="BottomRight" VerticalAlignment="Center"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Coordinates">
+                <StackPanel>
+                    <Label>Point</Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>X:</Label>
+                        <TextBox Name="coordinatePointX_tb" Width="30" VerticalAlignment="Center" LostFocus="coordinate_TextChanged"/>
+                        <Label>Y:</Label>
+                        <TextBox Name="coordinatePointY_tb" Width="30" VerticalAlignment="Center" LostFocus="coordinate_TextChanged"/>
+                    </StackPanel>
+
+                    <Label>Control1</Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>X:</Label>
+                        <TextBox Name="coordinateControl1X_tb" Width="30" VerticalAlignment="Center" LostFocus="coordinate_TextChanged"/>
+                        <Label>Y:</Label>
+                        <TextBox Name="coordinateControl1Y_tb" Width="30" VerticalAlignment="Center" LostFocus="coordinate_TextChanged"/>
+                    </StackPanel>
+
+                    <Label>Control2</Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>X:</Label>
+                        <TextBox Name="coordinateControl2X_tb" Width="30" VerticalAlignment="Center" LostFocus="coordinate_TextChanged"/>
+                        <Label>Y:</Label>
+                        <TextBox Name="coordinateControl2Y_tb" Width="30" VerticalAlignment="Center" LostFocus="coordinate_TextChanged"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</Page>

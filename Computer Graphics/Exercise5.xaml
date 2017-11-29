@@ -1,0 +1,104 @@
+﻿<Page x:Class="Computer_Graphics.Exercise5"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Computer_Graphics"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="280"
+      Title="Exercise5">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="270"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
+
+                <GroupBox Header="Image">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Open" Click="LoadImage_Click" Margin="3" Padding="3" />
+                        <Button Content="Undo" Click="UndoImage_Click" Margin="3" Padding="3" />
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Histogram" Margin="10,0,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Stretch" Click="HistogramStretch_Click" Margin="3" Padding="3" />
+                        <Button Content="Equalize" Click="HistogramEqualize_Click" Margin="3" Padding="3" />
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Binarization" Margin="10,0,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox VerticalAlignment="Center">
+                            <ComboBoxItem Name="chooseMethod_cbi" Content="Method" IsSelected="True"/>
+                            <ComboBoxItem Name="manuallyBinarization_cbi" Content="Manually"/>
+                            <ComboBoxItem Name="percentBlackSelectionBinarization_cbi" Content="Percent Black Selection" Selected="percentBlackSelectionBinarization_cbi_Selected"/>
+                            <ComboBoxItem Name="meanIteracitveSelection_cbi" Content="Mean Iterative Selection" Selected="meanIteracitveSelection_cbi_Selected"/>
+                            <ComboBoxItem Name="entropySelection_cbi" Content="Entropy Selection"/>
+                            <ComboBoxItem Name="minimumError_cbi" Content="Minimum Error"/>
+                            <ComboBoxItem Name="fuzzyMinimumError_cbi" Content="Fuzzy Minimum Error"/>
+                        </ComboBox>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding IsSelected, ElementName=manuallyBinarization_cbi, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Label Content="Threshold Level: " VerticalAlignment="Center"/>
+                            <Label Content="{Binding ElementName=manuallyValue_s, Path=Value}" Width="30" VerticalAlignment="Center"/>
+                            <Slider Name="manuallyValue_s" Value="128" ValueChanged="manuallyValue_s_ValueChanged" Minimum="0" Maximum="255" Width="150" TickFrequency="1" IsSnapToTickEnabled="True" VerticalAlignment="Center" Margin="5" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding IsSelected, ElementName=percentBlackSelectionBinarization_cbi, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Label Content="Percent Black Pixels: ~" VerticalAlignment="Center"/>
+                            <Label Content="{Binding ElementName=percentBlackPixels_s, Path=Value}" Width="50"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <Slider Name="percentBlackPixels_s" Value="50" ValueChanged="percentBlackPixels_s_ValueChanged" Minimum="0" Maximum="100" Width="150" TickFrequency="1" IsSnapToTickEnabled="True" VerticalAlignment="Center" Margin="5" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding IsSelected, ElementName=meanIteracitveSelection_cbi, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Label Name="meanIteractiveSelection_l" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding IsSelected, ElementName=entropySelection_cbi, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Label Content="Not available yet" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding IsSelected, ElementName=minimumError_cbi, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Label Content="Not available yet" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding IsSelected, ElementName=fuzzyMinimumError_cbi, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Label Content="Not available yet" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <Button Content="Apply" Click="ApplyBinaryzation_Click" Margin="3" Padding="3" />
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            <Image Name="image_i" Grid.Row="1" Stretch="Uniform"/>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <GroupBox Header="Luminosity" Grid.Row="0">
+                <Canvas Name="histogramLuminosity_c" Margin="5" ClipToBounds="True"/>
+            </GroupBox>
+            <GroupBox Header="Red" Grid.Row="1">
+                <Canvas Name="histogramRed_c" Margin="5" ClipToBounds="True"/>
+            </GroupBox>
+            <GroupBox Header="Green" Grid.Row="2">
+                <Canvas Name="histogramGreen_c" Margin="5" ClipToBounds="True"/>
+            </GroupBox>
+            <GroupBox Header="Blue" Grid.Row="3">
+                <Canvas Name="histogramBlue_c" Margin="5" ClipToBounds="True"/>
+            </GroupBox>
+        </Grid>
+
+    </Grid>
+</Page>
